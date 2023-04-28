@@ -44,7 +44,12 @@ export default function createD3NumberFormatter(config: {
   try {
     formatFunc =
       typeof locale === 'undefined'
-        ? d3Format(formatString)
+        ? formatLocale({
+            decimal: ',',
+            thousands: '.',
+            grouping: [3],
+            currency: ['VES ', ''],
+          }).format(formatString)
         : formatLocale(locale).format(formatString);
   } catch (error) {
     formatFunc = value => `${value} (Invalid format: ${formatString})`;

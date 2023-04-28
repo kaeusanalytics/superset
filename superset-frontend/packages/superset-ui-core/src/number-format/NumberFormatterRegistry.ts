@@ -31,7 +31,6 @@ export default class NumberFormatterRegistry extends RegistryWithDefaultKey<
       name: 'NumberFormatter',
       overwritePolicy: OverwritePolicy.WARN,
     });
-
     this.registerValue(
       NumberFormats.SMART_NUMBER,
       createSmartNumberFormatter(),

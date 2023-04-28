@@ -17,13 +17,28 @@
  * under the License.
  */
 
-import { format as d3Format } from 'd3-format';
+import { format as d3Format, formatLocale } from 'd3-format';
 import NumberFormatter from '../NumberFormatter';
 import NumberFormats from '../NumberFormats';
 
-const siFormatter = d3Format(`.3~s`);
-const float2PointFormatter = d3Format(`.2~f`);
-const float4PointFormatter = d3Format(`.4~f`);
+const siFormatter = formatLocale({
+  decimal: ',',
+  thousands: '.',
+  grouping: [3],
+  currency: ['VES ', ''],
+}).format(`.3~s`);
+const float2PointFormatter = formatLocale({
+  decimal: ',',
+  thousands: '.',
+  grouping: [3],
+  currency: ['VES ', ''],
+}).format(`.2~f`);
+const float4PointFormatter = formatLocale({
+  decimal: ',',
+  thousands: '.',
+  grouping: [3],
+  currency: ['VES ', ''],
+}).format(`.4~f`);
 
 function formatValue(value: number) {
   if (value === 0) {
