@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { format as d3Format, formatLocale } from 'd3-format';
+import { formatLocale } from 'd3-format';
 import NumberFormatter from '../NumberFormatter';
 import NumberFormats from '../NumberFormats';
 
