@@ -17,7 +17,7 @@
  * under the License.
  */
 import {
-  format as d3Format,
+  // format as d3Format,
   formatLocale,
   FormatLocaleDefinition,
 } from 'd3-format';
