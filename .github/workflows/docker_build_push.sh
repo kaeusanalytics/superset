@@ -95,7 +95,7 @@ docker build --target lean \
 #   --label "built_at=$(date)" \
 #   --label "target=dev" \
 #   --label "build_actor=${GITHUB_ACTOR}" \
-  .
+#   .
 
 if [ -z "${DOCKERHUB_TOKEN}" ]; then
   # Skip if secrets aren't populated -- they're only visible for actions running in the repo (not on forks)
