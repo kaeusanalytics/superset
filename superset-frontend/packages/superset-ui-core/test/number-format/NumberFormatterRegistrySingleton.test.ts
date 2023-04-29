@@ -35,7 +35,7 @@ describe('NumberFormatterRegistrySingleton', () => {
   describe('getNumberFormatter(format)', () => {
     it('returns a format function', () => {
       const format = getNumberFormatter('.3s');
-      expect(format(12345)).toEqual('12.3k');
+      expect(format(12345)).toEqual('12,3k');
     });
     it('returns a format function even given invalid format', () => {
       const format = getNumberFormatter('xkcd');
@@ -49,7 +49,7 @@ describe('NumberFormatterRegistrySingleton', () => {
   describe('formatNumber(format, value)', () => {
     it('format the given number using the specified format', () => {
       const output = formatNumber('.3s', 12345);
-      expect(output).toEqual('12.3k');
+      expect(output).toEqual('12,3k');
     });
     it('falls back to the default formatter if the format is undefined', () => {
       expect(formatNumber(undefined, 1000)).toEqual('1k');

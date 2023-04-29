@@ -18,7 +18,7 @@
 set -eo pipefail
 
 SHA=$(git rev-parse HEAD)
-REPO_NAME="apache/superset"
+REPO_NAME="kstools/superset"
 
 if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
   REFSPEC=$(echo "${GITHUB_HEAD_REF}" | sed 's/[^a-zA-Z0-9]/-/g' | head -c 40)
@@ -57,44 +57,44 @@ docker build --target lean \
   --label "build_actor=${GITHUB_ACTOR}" \
   .
 
-#
-# Build the "lean39" image
-#
-docker build --target lean \
-  -t "${REPO_NAME}:${SHA}-py39" \
-  -t "${REPO_NAME}:${REFSPEC}-py39" \
-  -t "${REPO_NAME}:${LATEST_TAG}-py39" \
-  --build-arg PY_VER="3.9-slim"\
-  --label "sha=${SHA}" \
-  --label "built_at=$(date)" \
-  --label "target=lean39" \
-  --label "build_actor=${GITHUB_ACTOR}" \
-  .
+# #
+# # Build the "lean39" image
+# #
+# docker build --target lean \
+#   -t "${REPO_NAME}:${SHA}-py39" \
+#   -t "${REPO_NAME}:${REFSPEC}-py39" \
+#   -t "${REPO_NAME}:${LATEST_TAG}-py39" \
+#   --build-arg PY_VER="3.9-slim"\
+#   --label "sha=${SHA}" \
+#   --label "built_at=$(date)" \
+#   --label "target=lean39" \
+#   --label "build_actor=${GITHUB_ACTOR}" \
+#   .
 
-#
-# Build the "websocket" image
-#
-docker build \
-  -t "${REPO_NAME}:${SHA}-websocket" \
-  -t "${REPO_NAME}:${REFSPEC}-websocket" \
-  -t "${REPO_NAME}:${LATEST_TAG}-websocket" \
-  --label "sha=${SHA}" \
-  --label "built_at=$(date)" \
-  --label "target=websocket" \
-  --label "build_actor=${GITHUB_ACTOR}" \
-  superset-websocket
+# #
+# # Build the "websocket" image
+# #
+# docker build \
+#   -t "${REPO_NAME}:${SHA}-websocket" \
+#   -t "${REPO_NAME}:${REFSPEC}-websocket" \
+#   -t "${REPO_NAME}:${LATEST_TAG}-websocket" \
+#   --label "sha=${SHA}" \
+#   --label "built_at=$(date)" \
+#   --label "target=websocket" \
+#   --label "build_actor=${GITHUB_ACTOR}" \
+#   superset-websocket
 
-#
-# Build the dev image
-#
-docker build --target dev \
-  -t "${REPO_NAME}:${SHA}-dev" \
-  -t "${REPO_NAME}:${REFSPEC}-dev" \
-  -t "${REPO_NAME}:${LATEST_TAG}-dev" \
-  --label "sha=${SHA}" \
-  --label "built_at=$(date)" \
-  --label "target=dev" \
-  --label "build_actor=${GITHUB_ACTOR}" \
+# #
+# # Build the dev image
+# #
+# docker build --target dev \
+#   -t "${REPO_NAME}:${SHA}-dev" \
+#   -t "${REPO_NAME}:${REFSPEC}-dev" \
+#   -t "${REPO_NAME}:${LATEST_TAG}-dev" \
+#   --label "sha=${SHA}" \
+#   --label "built_at=$(date)" \
+#   --label "target=dev" \
+#   --label "build_actor=${GITHUB_ACTOR}" \
   .
 
 if [ -z "${DOCKERHUB_TOKEN}" ]; then

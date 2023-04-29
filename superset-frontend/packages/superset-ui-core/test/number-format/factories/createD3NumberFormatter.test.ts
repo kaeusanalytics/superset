@@ -32,7 +32,7 @@ describe('createD3NumberFormatter(config)', () => {
     describe('if it is valid d3 formatString', () => {
       it('uses d3.format(config.formatString) as format function', () => {
         const formatter = createD3NumberFormatter({ formatString: '.2f' });
-        expect(formatter.format(100)).toEqual('100.00');
+        expect(formatter.format(100)).toEqual('100,00');
       });
     });
     describe('if it is invalid d3 formatString', () => {
